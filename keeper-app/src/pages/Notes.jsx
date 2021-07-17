@@ -44,6 +44,24 @@ function Notes() {
         });
     }
 
+    function updateNote(note) {
+        api.put('/api/notes/' + note.id, note).then((res) => {
+            console.log(res.data);
+            setNotes((prevState) => {
+                return notes.map((foundNote) => {
+                    if (foundNote.id === note.id) {
+                        foundNote.title = res.data.title;
+                        foundNote.content = res.data.content;
+                    }
+                    return foundNote;
+                })
+            });
+
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
     return (
         <div>
             <Header />
@@ -56,6 +74,7 @@ function Notes() {
                         title={note.title}
                         content={note.content}
                         deleteFunction={deleteNote}
+                        updateFunction={updateNote}
                     />
                 );
             })}

@@ -46,7 +46,9 @@ exports.create = (req, res) => {
 exports.remove = (req, res) => {
     const id = req.params.id;
 
-    Note.findOneAndRemove({id: id})
+    Note.findOneAndRemove({
+            id: id
+        })
         .then(data => {
             if (!data) {
                 res.status(404).send({
@@ -60,3 +62,26 @@ exports.remove = (req, res) => {
             res.status(500).send(err);
         });
 };
+
+exports.edit = (req, res) => {
+    Note.findOneAndUpdate({
+            id: req.params.id
+        }, {
+            title: req.body.title,
+            content: req.body.content
+        }, {
+            new: true
+        })
+        .then(data => {
+            if (!data) {
+                res.status(404).send({
+                    message: `Cannot edit note with id=${id}. Maybe note was not found!`
+                });
+            } else {
+                res.send(data);
+            }
+        })
+        .catch(err => {
+            res.status(500).send(err);
+        });
+}
