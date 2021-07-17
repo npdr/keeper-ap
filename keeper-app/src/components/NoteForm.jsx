@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import {v4 as uuidv4 } from 'uuid';
 
 function NoteForm(props) {
   const [note, setNote] = useState({
+    id: '',
     title: '',
     content: ''
   });
@@ -12,6 +14,7 @@ function NoteForm(props) {
     setNote(prevState => {
       return {
         ...prevState,
+        id: uuidv4(),
         [name]: value
       };
     });
@@ -20,6 +23,7 @@ function NoteForm(props) {
   function submitNote(event) {
     props.submitFunction(note);
     setNote({
+      id: '',
       title: '',
       content: ''
     });

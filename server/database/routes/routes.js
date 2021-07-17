@@ -6,7 +6,9 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new Note
+    router.get("/", notes.findAll)
     router.post("/", notes.create);
+    router.delete("/:id", notes.remove);
   
     app.use('/api/notes', router);
   };

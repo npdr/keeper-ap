@@ -1,11 +1,10 @@
 module.exports = mongoose => {
-    const Notes = mongoose.model(
-        "note",
-        mongoose.Schema({
-            title: String,
-            content: String,
-        })
-    );
+    var schema = mongoose.Schema({
+        id: String,
+        title: String,
+        content: String,
+    });
 
-    return Notes;
+    const Note = mongoose.model("note", schema);
+    return Note;
 };
