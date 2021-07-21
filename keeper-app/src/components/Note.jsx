@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 function Note(props) {
     const [editable, setEditable] = useState(false);
@@ -39,8 +41,8 @@ function Note(props) {
     return (
         <div id={props.id} className="note">
             {editable ?
-                <div>
-                    <button onClick={handleEdit}>Edit</button>
+                <div className="note-edit">
+                    <button onClick={handleEdit}><EditIcon /></button>
 
                     <input
                         name='title'
@@ -59,10 +61,10 @@ function Note(props) {
                 :
 
                 <div>
-                    <button onClick={handleEdit}>Edit</button>
+                    <button onClick={handleEdit}><EditIcon /></button>
                     <h1>{note.title}</h1>
                     <p>{note.content}</p>
-                    <button onClick={handleDelete}>Delete</button>
+                    <button onClick={handleDelete}><DeleteIcon /></button>
                 </div>
             }
 

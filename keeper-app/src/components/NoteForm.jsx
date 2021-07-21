@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import {v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
+import Zoom from '@material-ui/core/Zoom';
 
 function NoteForm(props) {
   const [note, setNote] = useState({
@@ -30,23 +33,33 @@ function NoteForm(props) {
     event.preventDefault();
   }
 
+  const [isFormClicked, setIsFormClicked] = useState(false);
+
+  function handleFormClick() {
+    setIsFormClicked(true);
+  }
+
   return (
     <div>
-      <form>
-        <input
-          name='title'
-          onChange={handleChange}
-          value={note.title}
-          placeholder='Title'
-        />
+      <form className="create-note">
+        {isFormClicked &&
+          <input
+            name='title'
+            onChange={handleChange}
+            value={note.title}
+            placeholder='Title'
+          />}
         <textarea
           name='content'
           onChange={handleChange}
+          onClick={handleFormClick}
           value={note.content}
           placeholder='Take a note...'
-          rows='3'
+          rows={isFormClicked ? 3 : 1}
         />
-        <button onClick={submitNote}>Add</button>
+          <Zoom in={isFormClicked}>
+            <Fab onClick={submitNote}><AddIcon /></Fab>
+          </Zoom>
       </form>
     </div>
 
