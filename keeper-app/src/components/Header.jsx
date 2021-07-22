@@ -1,10 +1,10 @@
 import React from 'react';
-import PostAddIcon from '@material-ui/icons/PostAdd';
+import HighlightIcon from '@material-ui/icons/Highlight';
 
 function Header() {
     return (
         <header>
-            <h1><PostAddIcon />Keeper</h1>
+            <h1><HighlightIcon />Keeper</h1>
         </header>
     );
 }

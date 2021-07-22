@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 function Note(props) {
     const [editable, setEditable] = useState(false);
@@ -42,8 +43,6 @@ function Note(props) {
         <div id={props.id} className="note">
             {editable ?
                 <div className="note-edit">
-                    <button onClick={handleEdit}><EditIcon /></button>
-
                     <input
                         name='title'
                         onChange={handleChange}
@@ -55,7 +54,7 @@ function Note(props) {
                         value={note.content}
                         rows='3'
                     />
-                    <button onClick={handleUpdate}>Update</button>
+                    <button onClick={handleUpdate}><CheckCircleIcon /></button>
                 </div>
 
                 :

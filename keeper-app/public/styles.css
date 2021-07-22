@@ -59,6 +59,7 @@ footer p {
   margin-bottom: 10px;
   white-space: pre-wrap;
   word-wrap: break-word;
+  width: 80%;
 }
 
 .note button {
@@ -74,8 +75,14 @@ footer p {
   outline: none;
 }
 
-.note input,button {
-  
+.note input, textarea {
+  font-size: 1.1em;
+  color: #212529;
+  width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  resize: none;
 }
 
 form.create-note {
