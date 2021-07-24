@@ -1,5 +1,6 @@
 import React from 'react';
 import HighlightIcon from '@material-ui/icons/Highlight';
+import './styles.css';
 
 function Header() {
     return (

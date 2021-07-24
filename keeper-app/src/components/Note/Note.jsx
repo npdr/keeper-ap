@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import './styles.css';
 
 function Note(props) {
     const [editable, setEditable] = useState(false);

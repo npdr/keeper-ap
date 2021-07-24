@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import Note from '../components/Note';
-import NoteForm from '../components/NoteForm';
+import Header from '../components/Header/Header';
+import Note from '../components/Note/Note';
+import NoteForm from '../components/NoteForm/NoteForm';
 import api from '../services/api';
 
 function Notes() {
@@ -78,7 +77,6 @@ function Notes() {
                     />
                 );
             })}
-            <Footer />
         </div>
     );
 }

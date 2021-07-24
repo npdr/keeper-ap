@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
+import './styles.css';
 
 function NoteForm(props) {
   const [note, setNote] = useState({

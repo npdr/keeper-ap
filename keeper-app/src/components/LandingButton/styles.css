@@ -1,0 +1,10 @@
+p {
+    text-align: center;
+}
+
+.landing-button {
+    background-color: #fff;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+}
