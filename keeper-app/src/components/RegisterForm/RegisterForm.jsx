@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import FormInput from '../FormInput/FormInput';
+import api from '../../services/api';
+import { useHistory } from 'react-router-dom';
 
 export default function RegisterForm() {
+    const history = useHistory();
+
     const [user, setUser] = useState({});
 
     function handleUserInput(name, userInput) {
@@ -15,14 +19,16 @@ export default function RegisterForm() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        //register user
+        api.post('/auth/register', user).then(() => {
+            history.push('/notes');
+        });
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <FormInput handleUserInput={handleUserInput} icon="fa fa-user" name="fname" placeholder="Full Name" />
-            <FormInput handleUserInput={handleUserInput} icon="fa fa-envelope" name="email" placeholder="Email Address" />
-            <FormInput handleUserInput={handleUserInput} icon="fa fa-lock" name="password" placeholder="Password" />
+        <form method="post" onSubmit={handleSubmit}>
+            <FormInput handleUserInput={handleUserInput} icon="fa fa-user" name="name" type="text" placeholder="Full Name" />
+            <FormInput handleUserInput={handleUserInput} icon="fa fa-envelope" name="email" type="text" placeholder="Email Address" />
+            <FormInput handleUserInput={handleUserInput} icon="fa fa-lock" name="password" type="password" placeholder="Password" />
 
             <div className="form-group">
                 <button type="submit" className="btn btn-primary btn-block"> Create Account  </button>

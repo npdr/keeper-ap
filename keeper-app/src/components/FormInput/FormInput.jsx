@@ -14,7 +14,7 @@ export default function FormInput(props) {
             <div className="input-group-prepend">
                 <span className="input-group-text"> <i className={props.icon}></i> </span>
             </div>
-            <input onChange={handleChange} name={props.name} value={userInput} className="form-control" placeholder={props.placeholder} type="text"></input>
+            <input onChange={handleChange} name={props.name} value={userInput} className="form-control" placeholder={props.placeholder} type={props.type}></input>
         </div>
     )
 }

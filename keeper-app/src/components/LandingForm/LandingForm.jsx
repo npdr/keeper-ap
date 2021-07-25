@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import api from "../../services/api";
 import AuthLogin from '../AuthLogin/AuthLogin';
 import RegisterForm from '../RegisterForm/RegisterForm';
 import LoginForm from '../LoginForm/LoginForm';
