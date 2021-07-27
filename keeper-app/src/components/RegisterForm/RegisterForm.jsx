@@ -19,7 +19,9 @@ export default function RegisterForm() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        api.post('/auth/register', user).then(() => {
+        api.post('/auth/register', user).then((res) => {
+            console.log(res);
+            localStorage.setItem('token', res.data.token);
             history.push('/notes');
         });
     }

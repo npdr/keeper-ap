@@ -12,7 +12,7 @@ function Notes() {
     }, []);
 
     function loadNotesFromDB() {
-        api.get('/api/notes').then((res) => {
+        api.get('/auth/notes', { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } }).then((res) => {
             const notes = res.data;
             setNotes(notes);
         }).catch((err) => {
@@ -21,7 +21,7 @@ function Notes() {
     };
 
     function addNote(note) {
-        api.post('/api/notes', note).then(() => {
+        api.post('/auth/notes', note, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } }).then(() => {
             setNotes(prevState => {
                 return [...prevState, note];
             });
@@ -31,7 +31,7 @@ function Notes() {
     }
 
     function deleteNote(id) {
-        api.delete('/api/notes/' + id).then((res) => {
+        api.delete('/auth/notes/' + id, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } }).then(() => {
             setNotes((prevState) => {
                 return prevState.filter((note) => {
                     return note.id !== id;
@@ -44,9 +44,8 @@ function Notes() {
     }
 
     function updateNote(note) {
-        api.put('/api/notes/' + note.id, note).then((res) => {
-            console.log(res.data);
-            setNotes((prevState) => {
+        api.put('/auth/notes/' + note.id, note, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } }).then((res) => {
+            setNotes(() => {
                 return notes.map((foundNote) => {
                     if (foundNote.id === note.id) {
                         foundNote.title = res.data.title;
@@ -65,7 +64,7 @@ function Notes() {
         <div>
             <Header />
             <NoteForm submitFunction={addNote} />
-            {notes.map((note, index) => {
+            {notes.map((note) => {
                 return (
                     <Note
                         key={note.id}

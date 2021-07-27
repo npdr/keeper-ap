@@ -19,15 +19,18 @@ router.post('/register', async (req, res) => {
 
         user.password = undefined;
 
-        return res.send({
+        const token = generateToken({
+            id: user.id
+        });
+        
+        res.send({
             user,
-            token: generateToken({
-                id: user.id
-            }),
+            token,
         });
     } catch (err) {
         return res.status(400).send({
-            error: 'Registration Failed'
+            error: err,
+            message: 'Registration Failed'
         });
     }
 });
@@ -62,11 +65,13 @@ router.post('/authenticate', async (req, res) => {
 
     user.password = undefined;
 
+    const token = generateToken({
+        id: user.id
+    });
+
     res.send({
         user,
-        token: generateToken({
-            id: user.id
-        }),
+        token,
     });
 })
 

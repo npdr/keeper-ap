@@ -19,8 +19,8 @@ export default function LoginForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(user);
-        api.post('/auth/authenticate', user).then(() => {
+        api.post('/auth/authenticate', user).then((res) => {
+            localStorage.setItem('token', res.data.token);
             history.push('/notes');
         });
     }

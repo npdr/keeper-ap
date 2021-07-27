@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
+import { v4 as uuidv4 } from 'uuid';
 import './styles.css';
 
 function NoteForm(props) {
@@ -58,9 +58,9 @@ function NoteForm(props) {
           placeholder='Take a note...'
           rows={isFormClicked ? 3 : 1}
         />
-          <Zoom in={isFormClicked}>
-            <Fab onClick={submitNote}><AddIcon /></Fab>
-          </Zoom>
+        <Zoom in={isFormClicked}>
+          <Fab onClick={submitNote}><AddIcon /></Fab>
+        </Zoom>
       </form>
     </div>
 

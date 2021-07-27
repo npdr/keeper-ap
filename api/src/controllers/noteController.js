@@ -9,6 +9,7 @@ router.use(authMiddleware);
 router.post('/', async (req, res) => {
     try {
         const note = await Note.create({
+            id: req.body.id,
             title: req.body.title,
             content: req.body.content,
             user: req.userId,
@@ -45,7 +46,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const note = await Note.findById(req.params.id);
+        const note = await Note.findById(req.userId);
         return res.send(note);
     } catch (err) {
         return res.status(400).send({
@@ -57,7 +58,8 @@ router.get('/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     try {
-        await Note.findByIdAndUpdate(req.params.id, {
+        await Note.findOneAndUpdate({
+            id: req.params.id,
             title: req.body.title,
             content: req.body.content,
         });
@@ -75,11 +77,13 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        await Note.findByIdAndRemove(req.params.id);
+        const noteDeleted = await Note.findOneAndRemove({
+            id: req.params.id
+        });
         await User.findByIdAndUpdate(req.userId, {
             $pull: {
                 notes: {
-                    $in: [req.params.id]
+                    $in: noteDeleted._id
                 }
             }
         });
@@ -94,4 +98,4 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-module.exports = app => app.use('/notes', router);
+module.exports = app => app.use('/auth/notes', router);
